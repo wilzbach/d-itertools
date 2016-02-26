@@ -4,6 +4,8 @@ itertools
 Additional range primitives for iterations.
 (inspired by Python)
 
+[![Build Status](https://travis-ci.org/greenify/d-itertools.svg?branch=master)](https://travis-ci.org/greenify/d-itertools)
+
 Methods
 -------
 
