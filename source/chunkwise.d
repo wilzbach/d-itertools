@@ -10,21 +10,21 @@ import std.traits;
 Iterates over a range in splits.
 Allows non-filling end intervals:
 
-[1,2,3].splitwise().array == [[1,2],[3]]
+[1,2,3].chunkwise().array == [[1,2],[3]]
 
 Params:
     r = Range from which the minimum will be selected
-    pairLength = 
+    pairLength = Chunk size (default 2)
 
 Returns: The minimum of the passed-in values.
 */
-auto splitwise(Range)(Range r, int pairLength = 2)
+auto chunkwise(Range)(Range r, int pairLength = 2)
 if(isInputRange!Range)
 in{
     assert(pairLength >= 1, "invalid pairLength");
 }
 body{
-    static struct Splitwise{
+    static struct Chunkwise{
         private Range _input;
         private int _pairLength;
         private ElementType!(Range)[] _els;
@@ -34,7 +34,7 @@ body{
             this._pairLength = pairLength;
         }
 
-        private void _popSplitwise(){
+        private void _popchunkwise(){
             // create new array -> make other mutable
             if(_input.empty){
                 // soft catch in case we reached the end
@@ -57,9 +57,9 @@ body{
             assert(!empty, "empty array");
             if(_els is null){
                 // pop was never called before -> stuck before
-                _popSplitwise();
+                _popchunkwise();
             }
-            _popSplitwise();
+            _popchunkwise();
         }
 
         @property bool empty(){
@@ -69,35 +69,35 @@ body{
         @property auto ref front(){
             assert(!empty, "r is already empty"); 
             if (_els is null){
-                _popSplitwise();
+                _popchunkwise();
             }
             return _els;
         }
     }
-    return Splitwise(r, pairLength);
+    return Chunkwise(r, pairLength);
 }
 
 ///
 unittest{
-    assert([0,1,2,3,4,5].splitwise.array == [[0, 1], [2, 3], [4, 5]]);
-    assert(iota(5).splitwise(2).front == [0,1]);
+    assert([0,1,2,3,4,5].chunkwise.array == [[0, 1], [2, 3], [4, 5]]);
+    assert(iota(5).chunkwise(2).front == [0,1]);
 }
 
 unittest{
-    assert([0,1,2,3,4,5].splitwise(3).array == [[0, 1, 2], [3, 4, 5]]);
-    assert(iota(2).splitwise(2).front == [0,1]);
-    assert(iota(3).splitwise(2).array == [[0,1],[2]]);
-    assert(iota(2).splitwise(3).front == [0,1]);
+    assert([0,1,2,3,4,5].chunkwise(3).array == [[0, 1, 2], [3, 4, 5]]);
+    assert(iota(2).chunkwise(2).front == [0,1]);
+    assert(iota(3).chunkwise(2).array == [[0,1],[2]]);
+    assert(iota(2).chunkwise(3).front == [0,1]);
     int[] d;
-    assert(d.splitwise.empty);
-    auto e = iota(5).splitwise(2);
+    assert(d.chunkwise.empty);
+    auto e = iota(5).chunkwise(2);
     e.popFront;
     assert(e.array == [[2,3],[4]]);
 }
 
 unittest{
-    // test splitwise2 step by step
-    auto a = [0,1,2,3,4,5].splitwise;
+    // test chunkwise2 step by step
+    auto a = [0,1,2,3,4,5].chunkwise;
     assert(a.front == [0,1]); 
     a.popFront();
     assert(a.front == [2,3]); 
@@ -108,8 +108,8 @@ unittest{
 }
 
 unittest{
-    // test splitwise3 step by step
-    auto a = [0,1,2,3].splitwise(3);
+    // test chunkwise3 step by step
+    auto a = [0,1,2,3].chunkwise(3);
     assert(a.front == [0,1,2]); 
     a.popFront();
     assert(a.front == [3]); 

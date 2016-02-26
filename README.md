@@ -11,6 +11,7 @@ Methods
 
 ### `pairwise`
 
+```
 Iterates over a range in pairs.
 Allows non-filling end intervals:
 
@@ -21,19 +22,22 @@ Params:
     pairLength = Pair size (default 2)
 
 Returns: The minimum of the passed-in values.
+```
 
-### `splitwise`
+### `chunkwise`
 
+```
 Iterates over a range in splits.
 Allows non-filling end intervals:
 
-[1,2,3].splitwise().array == [[1,2],[3]]
+[1,2,3].chunkwise().array == [[1,2],[3]]
 
 Params:
     r = Range from which the minimum will be selected
-    pairLength = 
+    pairLength = Chunk size (default 2)
 
 Returns: The minimum of the passed-in values.
+```
 
 
 TODO
