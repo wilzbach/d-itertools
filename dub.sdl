@@ -1,0 +1,4 @@
+name "itertools"
+description "Additional range primitives for iteration"
+copyright "Copyright © 2016, greenify"
+authors "greenify"
