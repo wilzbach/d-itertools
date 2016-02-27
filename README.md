@@ -39,6 +39,39 @@ Returns:
     Forward range with includes
 ```
 
+### `combinations`
+
+```
+Lazily computes the all k-combinations of $(D r).
+Imagine this as the product filtered for only strictly ordered items.
+
+For example $(D"AB".combinations(2).array) returns $(D["AB"]).
+
+Params:
+    r = RandomAccessRange or string as origin
+    k = number of combinations
+
+Returns:
+    Forward range which yields the k-combinations items
+```
+
+### `combinationsRepeat`
+
+```
+Lazily computes the all k-combinations of $(D r) with repetitions.
+A k-combination with repetitions, or k-multicombination, or multisubset of size k from a set S is given by a sequence of k not necessarily distinct elements of S, where order is not taken into account.
+Imagine this as the product filtered for only ordered items.
+
+For example $(D"AB".combinationsRepeat(2).array) returns $(D["AA", "AB", "BB"]).
+
+Params:
+    r = RandomAccessRange or string as origin
+    k = number of combinations
+
+Returns:
+    Forward range which yields the k-multicombinations items
+```
+
 TODO
 ----
 
