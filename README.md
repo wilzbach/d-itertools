@@ -24,24 +24,22 @@ Params:
 Returns: The minimum of the passed-in values.
 ```
 
-### `chunkwise`
+### `product`
 
 ```
-Iterates over a range in splits.
-Allows non-filling end intervals:
-
-[1,2,3].chunkwise().array == [[1,2],[3]]
+Lazily computes the Cartesian product of $(D r).
+If the input is sorted, the product is in lexicographic order.
+For example $(D"AB".product(2).array) returns $(D["AA", "AB", "BA", "BB"])
 
 Params:
-    r = Range from which the minimum will be selected
-    pairLength = Chunk size (default 2)
+    r = RandomAccessRange or string as origin
+    repeat = number of repetitions
 
-Returns: The minimum of the passed-in values.
+Returns:
+    Forward range with includes
 ```
 
-
 TODO
-------
+----
 
-- Decide whether it is ok to have _transient_ iterators
-- use a better method instead of the circular buffer with `dup` for pairwise
+- add `save` to product

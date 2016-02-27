@@ -13,7 +13,6 @@ Params:
 Returns:
     Forward range with includes
 */
-// cartesian product
 auto product(Range)(Range r, size_t repeat=1)
 if (isRandomAccessRange!Range && hasLength!Range)
 in {
