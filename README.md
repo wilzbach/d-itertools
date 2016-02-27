@@ -71,8 +71,3 @@ Params:
 Returns:
     Forward range which yields the k-multicombinations items
 ```
-
-TODO
-----
-
-- add `save` to product
