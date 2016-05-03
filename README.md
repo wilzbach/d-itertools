@@ -4,8 +4,17 @@ itertools
 Additional range primitives for iterations.
 (inspired by Python)
 
-[![Build Status](https://travis-ci.org/greenify/d-itertools.svg?branch=master)](https://travis-ci.org/greenify/d-itertools)
+[![Build Status](https://travis-ci.org/wilzbach/d-itertools.svg?branch=master)](https://travis-ci.org/wilzbach/d-itertools)
 
+# This module is now part of the new [mir](https://github.com/libmir/mir) library at [mir.combinatorics](http://docs.mir.dlang.io/latest/mir_combinatorics.html).
+
+  
+  
+  
+<br><br><br><br><br><br><br><br><br><br>   
+  
+  
+  
 Methods
 -------
 
